@@ -16,7 +16,7 @@ class _CustomHeadingState extends State<CustomHeading> {
       widget.title,
       // "Log In to Your Account",
       style: TextStyle(
-        fontSize: 26,
+        fontSize: 24,
         fontFamily:
         'PoetsenOne-Regular',
         fontWeight: FontWeight.bold,

@@ -25,8 +25,9 @@ class _CustomButtonState extends State<CustomButton> {
           ),
         ),
         child: Text(widget.title,
-        style: TextStyle(
-          fontFamily: 'PoetsenOne-Regular',
+        style: const TextStyle(
+
+          fontWeight: FontWeight.bold,
           color: Colors.white,
         ),),
       ),

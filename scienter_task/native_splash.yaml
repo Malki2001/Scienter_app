@@ -1,0 +1,23 @@
+flutter_native_splash:
+  android : true
+  ios : true
+  web : false
+
+#  color: "#d4e4ed"
+  background_image: "assets/images/brands_logo/background.png"
+  image: "assets/images/native_icon.png"
+  branding: "assets/images/careerWave_version.png"
+
+  background_image_dark: "assets/images/brands_logo/background_dark.png"
+  image_dark: "assets/images/careerWave.png"
+  branding_dark: "assets/images/careerWave_version.png"
+
+  android_12:
+    color: "#d4e4ed"
+    image: "assets/images/native_icon.png"
+    branding: "assets/images/careerWave_version.png"
+
+
+
+
+

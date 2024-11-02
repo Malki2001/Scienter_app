@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:scienter_task/component/custom_appbutton.dart';
 import 'package:scienter_task/component/custom_button.dart';
+import 'package:scienter_task/component/custom_divider.dart';
 import 'package:scienter_task/component/custom_heading.dart';
 import 'package:scienter_task/component/custom_textfield.dart';
 import 'package:scienter_task/component/main_layout.dart';
 import 'package:scienter_task/screens/home_screen.dart';
 import 'package:scienter_task/screens/signup_screen.dart';
+
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -54,22 +60,29 @@ class _LoginScreenState extends State<LoginScreen> {
     return MainLayout(
       appBar: AppBar(
         elevation: 0.0,
-        // backgroundColor: Color.fromRGBO(66, 245, 191, 1),
+        backgroundColor: Colors.white,
 
         leading: IconButton(
           icon: const Icon(Icons.arrow_back,
-              color: Color.fromRGBO(120, 6, 84, 1)),
+              color: Colors.black),
           onPressed: () {
-            Navigator.pop(context);
+            SystemNavigator.pop();
           },
         ),
       ),
       children: [
-        const SizedBox(height: 80),
+        Image.asset(
+          'assets/images/icon_3.png',
+          width: 180,
+          height: 180,
+          fit: BoxFit.cover,
+        ),
 
-        CustomHeading(title: " Log In to Your Account"),
+        const SizedBox(height: 20),
 
-        const SizedBox(height: 50),
+        const CustomHeading(title: " Log In to Your Account"),
+
+        const SizedBox(height: 20),
 
         Form(
             key: formKey ,
@@ -77,12 +90,12 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             CustomTextField(
                 controller: emailController,
-                labelText: 'Email',
-                hintText: 'Enter Your Email',
+                labelText: 'Username',
+                hintText: 'Enter Your Username',
                 validator: (value) => onEmailChanged(value),
                 icon: const Icon(Icons.email)),
 
-            SizedBox(height: 25),
+            const SizedBox(height: 10),
 
             CustomTextField(
                 controller: passwordController,
@@ -92,98 +105,60 @@ class _LoginScreenState extends State<LoginScreen> {
                 validator: (value) => onPasswordChanged(value),
                 icon: const Icon(Icons.lock)),
 
-            SizedBox(height: 10), // Add space before the Facebook button
+            const SizedBox(height: 10),
+
+            const Align(
+              alignment: Alignment.centerRight,
+              child:
+                Text(
+                  "Forgot the password",
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 12
+                  ),
+                ),
+
+            ),
+
+            const SizedBox(height: 10),
+
 
             CustomButton(title: "Sign In", onTap: () {
               if(formKey.currentState! .validate()){
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  MaterialPageRoute(builder: (context) => const HomeScreen()),
                 );
               }
             }),
           ],
         )),
 
-        // SizedBox(height: 8),
+        const SizedBox(height: 10),
 
-        Text(
-          "Forgot the password",
-          style: TextStyle(
-            color: Color.fromRGBO(120, 6, 84, 1),
-          ),
-        ),
-        // Add space before the Facebook button
+        CustomDivider(),
 
-        SizedBox(height: 100),
+        const SizedBox(height: 10),
 
-        Row(
+        const Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child: Divider(
-                color: Colors.black12,
-                thickness: 1,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              child: Text(
-                'or continue with',
-                style: TextStyle(color: Colors.grey),
-              ),
-            ),
-            Expanded(
-              child: Divider(
-                color: Colors.black12,
-                thickness: 1,
-              ),
-            ),
+
+            CustomAppbutton(appIcon: Icons.facebook),
+
+            SizedBox(width: 30),
+
+            CustomAppbutton(appIcon: FontAwesomeIcons.google, iconSize: 18,),
+
+            SizedBox(width: 30),
+
+            CustomAppbutton(appIcon: Icons.apple_outlined),
+
           ],
         ),
 
-        SizedBox(height: 10),
 
-        // Row(
-        //   crossAxisAlignment: CrossAxisAlignment.center,
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   children: [
-        //     ElevatedButton(
-        //       style: ElevatedButton.styleFrom(
-        //         elevation: 0.0,
-        //         shape: CircleBorder(),
-        //         padding: EdgeInsets.all(10),
-        //       ),
-        //       onPressed: () {},
-        //       child: Icon(Icons.facebook), // Facebook icon
-        //     ),
-        //     SizedBox(width: 30),
-        //     ElevatedButton(
-        //       style: ElevatedButton.styleFrom(
-        //         elevation: 0.0,
-        //         shape: CircleBorder(),
-        //         padding: EdgeInsets.all(10),
-        //       ),
-        //       onPressed: () {},
-        //       child: Image.asset(
-        //         'assets/google-logo.png',
-        //         width: 26.0,
-        //         height: 26.0,
-        //       ), // Facebook icon
-        //     ),
-        //     SizedBox(width: 30),
-        //     ElevatedButton(
-        //       style: ElevatedButton.styleFrom(
-        //         elevation: 0.0,
-        //         shape: CircleBorder(),
-        //         padding: EdgeInsets.all(10),
-        //       ),
-        //       onPressed: () {},
-        //       child: Icon(Icons.apple_outlined), // Facebook icon
-        //     ),
-        //   ],
-        // ),
-
-        SizedBox(height: 10),
 
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -195,15 +170,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Colors.grey,
               ),
             ),
-            SizedBox(width: 10),
+
+
             TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignupScreen()),
-                );
-              },
-              child: TextButton(
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -213,11 +182,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Text(
                   "Sign Up",
                   style: TextStyle(
-                    color: Color.fromRGBO(120, 6, 84, 1),
+                    color: Colors.orange,
                   ),
                 ),
               ),
-            ),
+
           ],
         )
       ],

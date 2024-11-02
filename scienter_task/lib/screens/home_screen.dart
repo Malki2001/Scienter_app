@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:scienter_task/component/custom_box.dart';
 import 'package:scienter_task/component/custom_button.dart';
+import 'package:scienter_task/component/custom_searchbar.dart';
 import 'package:scienter_task/component/main_layout.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,16 +18,83 @@ class _HomeScreenState extends State<HomeScreen> {
     return MainLayout(
         appBar: AppBar(
           elevation: 0.0,
-          // backgroundColor: Color.fromRGBO(66, 245, 191, 1),
-
+          backgroundColor: Colors.white,
+          title: const Text(
+            "Home",
+            style: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
+          ),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back,
-                color: Color.fromRGBO(120, 6, 84, 1)),
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () {
-              // Navigator.pop(context);
+              SystemNavigator.pop();
             },
           ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: Image.asset('assets/images/icon_3.png',
+                  width: 40, height: 40),
+            )
+          ],
         ),
-        children: [CustomButton(title: "Back", onTap: () {})]);
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomSearchbar(),
+              SizedBox(height: 15.0),
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      CustomBox(
+                          jobImage:
+                              Image.asset("assets/images/category/c9.jpg"),
+                          jobTitle: ' E-commerce'),
+                      SizedBox(width: 8.0),
+                      CustomBox(
+                          jobImage:
+                              Image.asset("assets/images/category/c5.jpg"),
+                          jobTitle: 'Technology & IT'),
+                    ],
+                  ),
+                  SizedBox(height: 15.0),
+                  Row(
+                    children: [
+                      CustomBox(
+                          jobImage:
+                              Image.asset("assets/images/category/c11.jpg"),
+                          jobTitle: 'Healthcare & Wellness'),
+                      SizedBox(width: 8.0),
+                      CustomBox(
+                          jobImage:
+                              Image.asset("assets/images/category/c12.jpg"),
+                          jobTitle: 'Education & Training'),
+                    ],
+                  ),
+                  SizedBox(height: 15.0),
+
+                  Row(
+                    children: [
+                      CustomBox(
+                          jobImage:
+                          Image.asset("assets/images/category/c10.jpg"),
+                          jobTitle: 'Food & Beverage'),
+                      SizedBox(width: 8.0),
+                      CustomBox(
+                          jobImage:
+                          Image.asset("assets/images/category/c13.jpg"),
+                          jobTitle: 'Financial Services'),
+                    ],
+                  ),
+                ],
+              )
+            ],
+          ),
+          SizedBox(height: 15.0),
+          CustomButton(title: "Continue", onTap: () {})
+        ]);
   }
 }

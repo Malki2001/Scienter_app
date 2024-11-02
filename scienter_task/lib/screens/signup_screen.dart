@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -28,6 +29,7 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController mobileController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController countryController = TextEditingController();
 
   final emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
@@ -50,7 +52,11 @@ class _SignupScreenState extends State<SignupScreen> {
       return "* Mobile Number is required.";
     } else if (!MobileRegex.hasMatch(mobile)) {
       return "* Mobile Number is invalid.";
-    } else {
+    }
+    else if(mobile.length != 10){
+      return "* Mobile Number must contain 10 characters";
+    }
+    else {
       return null;
     }
   }
@@ -84,8 +90,32 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
+
+  String? onConfirmPasswordChanged(String? confirmPassword) {
+    if (confirmPassword!.isEmpty) {
+      return "* Confirm Password is required.";
+    }
+    if (confirmPassword != passwordController.text) {
+      return "* Passwords do not match";
+    } else {
+      return null;
+    }
+  }
+
+
+  String? validateAgreement(bool? value) {
+    if (value == null || !value) {
+      return '* You must agree to the terms and conditions.';
+    }
+    return null;
+  }
+
+
   bool isloading = false;
   List<String> countryNames = [];
+  bool isAgreed = false;
+  String? agreementError;
+
 
   @override
   void initState() {
@@ -123,26 +153,47 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return MainLayout(
       isLoading: isloading,
       appBar: AppBar(
         elevation: 0.0,
-        // backgroundColor: Color.fromRGBO(66, 245, 191, 1),
+        backgroundColor: Colors.white,
+
 
         leading: IconButton(
           icon: const Icon(Icons.arrow_back,
-              color: Color.fromRGBO(120, 6, 84, 1)),
+              color: Colors.black),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const LoginScreen()),
+            );
           },
         ),
       ),
+
+
       children: [
-        const SizedBox(height: 80),
+        //
+        // Image.asset(
+        //   'assets/images/img7.jpg',
+        //   width: 150,
+        //   height: 120,
+        //   fit: BoxFit.cover,
+        // ),
+
+
+        const SizedBox(height: 20),
+
         CustomHeading(title: "Create Your Account"),
-        const SizedBox(height: 50),
+
+
+        const SizedBox(height: 30),
+
         Form(
             key: formKey,
             child: Column(
@@ -154,7 +205,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     validator: (value) => onNameChanged(value),
                     icon: const Icon(Icons.person_outline)),
 
-                SizedBox(height: 17),
+                SizedBox(height: 15),
 
                 CustomTextField(
                     controller: lNameController,
@@ -201,7 +252,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     validator: (value) => onMobileChanged(value),
                     icon: const Icon(Icons.email)),
 
-                SizedBox(height: 17),
+                SizedBox(height: 15),
 
                 CustomTextField(
                     controller: emailController,
@@ -210,12 +261,12 @@ class _SignupScreenState extends State<SignupScreen> {
                     validator: (value) => onEmailChanged(value),
                     icon: const Icon(Icons.email)),
 
-                SizedBox(height: 17),
+                SizedBox(height: 15),
 
                 CustomDropdown(
                     dataList: countryNames, controller: countryController),
 
-                SizedBox(height: 17),
+                SizedBox(height: 15),
                 CustomTextField(
                     controller: passwordController,
                     isObscure: true,
@@ -224,19 +275,52 @@ class _SignupScreenState extends State<SignupScreen> {
                     validator: (value) => onPasswordChanged(value),
                     icon: const Icon(Icons.lock)),
 
-                SizedBox(height: 10), // Add space before the Facebook button
+                SizedBox(height: 15),
+
+                CustomTextField(
+                controller: confirmPasswordController,
+                isObscure: true,
+                labelText: 'Confirm Password',
+                hintText: 'Confirm Your Password',
+                validator: (value) => onConfirmPasswordChanged(value),
+                icon: const Icon(Icons.lock)),
+
+                const SizedBox(height: 10),
+
+                Row(
+                  children: [
+                    Checkbox(value: isAgreed,
+                        onChanged: (value){
+                          setState(() {
+                            isAgreed = value?? false;
+                            agreementError = validateAgreement(isAgreed);
+                          });
+
+                        },),
+                    const Expanded(child: Text( "Agree with Terms & Conditions",
+                    style: TextStyle(color: Colors.black),))
+
+                  ],
+                ),
 
                 CustomButton(
                     title: "Sign Up",
                     onTap: () {
-                      if (formKey.currentState!.validate()) {
+                      String? errorMessage = validateAgreement(isAgreed);
+                      if (formKey.currentState!.validate() && errorMessage == null) {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => LoginScreen()),
+                          MaterialPageRoute(builder: (context) => LoginScreen()),
+                        );
+                      } else {
+
+                        String displayMessage = errorMessage ?? "Please fill out all fields correctly.";
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(displayMessage)),
                         );
                       }
                     }),
+
               ],
             )),
       ],

@@ -1,11 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:scienter_task/component/custom_divider.dart';
+import 'package:scienter_task/component/custom_heading.dart';
 import 'package:scienter_task/screens/login_screen.dart';
 import 'package:scienter_task/screens/signup_screen.dart';
-
 import '../component/custom_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -18,78 +18,47 @@ class WelcomeScreen extends StatelessWidget {
       body: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(16.0),
+
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-
           children: [
-
             Image.asset(
               'assets/images/img3.jpg',
               width: 300,
               height: 300,
               fit: BoxFit.cover,
             ),
+            const CustomHeading(title: "Welcome Back !"),
 
-            const Text(
-              "Let's You In",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
             const SizedBox(height: 20),
 
             const CustomOutlinedButton(
               logo: FontAwesomeIcons.google,
               logoTitle: 'Continue with Google',
               iconSize: 18.0,
-              iconColor: Colors.black,
             ),
-
-
 
             const SizedBox(height: 10),
 
             const CustomOutlinedButton(
               logo: Icons.apple_outlined,
               logoTitle: 'Continue with Apple',
-              iconColor: Colors.black,
             ),
 
             const SizedBox(height: 20),
 
-            const Row(
-              children: [
-                Expanded(
-                  child: Divider(
-                    color: Colors.black12,
-                    thickness: 1,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8),
-                  child: Text(
-                    'or',
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ),
-                Expanded(
-                  child: Divider(
-                    color: Colors.black12,
-                    thickness: 1,
-                  ),
-                ),
-              ],
-            ),
+            const CustomDivider(),
 
             const SizedBox(height: 10),
+
             CustomButton(
                 title: "Sign In with Password",
                 onTap: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const LoginScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()),
                   );
                 }),
 
@@ -135,14 +104,14 @@ class CustomOutlinedButton extends StatelessWidget {
   final IconData? logo;
   final String logoTitle;
   final double iconSize;
-  final Color iconColor;
+
 
   const CustomOutlinedButton({
     super.key,
     this.logo,
     required this.logoTitle,
     this.iconSize = 24.0,
-    this.iconColor = Colors.black,
+
   });
 
   @override
@@ -163,7 +132,7 @@ class CustomOutlinedButton extends StatelessWidget {
           children: [
             FaIcon(
               logo,
-              color: iconColor,
+              color: Colors.black,
               size: iconSize,
             ),
             const SizedBox(width: 10),
