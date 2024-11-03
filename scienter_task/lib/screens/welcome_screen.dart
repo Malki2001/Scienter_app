@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scienter_task/component/custom_divider.dart';
@@ -18,7 +16,6 @@ class WelcomeScreen extends StatelessWidget {
       body: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(16.0),
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -30,28 +27,20 @@ class WelcomeScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             const CustomHeading(title: "Welcome Back !"),
-
             const SizedBox(height: 20),
-
             const CustomOutlinedButton(
               logo: FontAwesomeIcons.google,
               logoTitle: 'Continue with Google',
               iconSize: 18.0,
             ),
-
             const SizedBox(height: 10),
-
             const CustomOutlinedButton(
               logo: Icons.apple_outlined,
               logoTitle: 'Continue with Apple',
             ),
-
             const SizedBox(height: 20),
-
             const CustomDivider(),
-
             const SizedBox(height: 10),
-
             CustomButton(
                 title: "Sign In with Password",
                 onTap: () {
@@ -61,7 +50,6 @@ class WelcomeScreen extends StatelessWidget {
                         builder: (context) => const LoginScreen()),
                   );
                 }),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -105,13 +93,11 @@ class CustomOutlinedButton extends StatelessWidget {
   final String logoTitle;
   final double iconSize;
 
-
   const CustomOutlinedButton({
     super.key,
     this.logo,
     required this.logoTitle,
     this.iconSize = 24.0,
-
   });
 
   @override

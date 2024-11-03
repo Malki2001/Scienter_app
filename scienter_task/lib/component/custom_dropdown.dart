@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../styles/app_styles.dart';
 
 class CustomDropdown extends StatefulWidget {
@@ -42,11 +41,11 @@ class _CustomDropdownState extends State<CustomDropdown> {
           ),
         );
       }).toList(),
-      // dropdownColor: Colors.thirdPartyColor,
+
       onChanged: (String? newValue) {
         widget.controller.text = newValue!;
       },
-      hint: const Text("Select your recover question"),
+      hint: const Text("Select your country"),
     );
   }
 }

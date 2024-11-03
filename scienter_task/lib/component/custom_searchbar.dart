@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomSearchbar extends StatefulWidget {
-  const CustomSearchbar({Key? key}) : super(key: key);
+  const CustomSearchbar({super.key});
 
   @override
   State<CustomSearchbar> createState() => _CustomSearchbarState();
@@ -18,15 +18,12 @@ class _CustomSearchbarState extends State<CustomSearchbar> {
           prefixIcon: const Icon(Icons.search),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
-
           ),
           contentPadding:
-          const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
         ),
         style: const TextStyle(color: Colors.black),
-        onSubmitted: (query) {
-
-        },
+        onSubmitted: (query) {},
       ),
     );
   }

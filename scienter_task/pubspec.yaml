@@ -43,6 +43,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.14.1"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/main_logo.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -66,14 +72,7 @@ flutter:
   assets:
          - assets/images/
          - assets/images/icon_3.png
-         - assets/images/brands_logo/background.png
-         - assets/images/brands_logo/logo.png
-         - assets/images/brands_logo/branding.png
-         - assets/images/brands_logo/background_dark.png
-         - assets/images/brands_logo/logo_dark.png
-         - assets/images/brands_logo/branding_dark.png
-         - assets/images/brands_logo/android_logo.png
-         - assets/images/brands_logo/android_branding.png
+         - assets/images/brands_logo/
          - assets/images/category/
 
 

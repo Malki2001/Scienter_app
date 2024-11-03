@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomHeading extends StatefulWidget{
+class CustomHeading extends StatefulWidget {
   final String title;
-
   const CustomHeading({super.key, required this.title});
 
   @override
@@ -14,11 +13,8 @@ class _CustomHeadingState extends State<CustomHeading> {
   Widget build(BuildContext context) {
     return Text(
       widget.title,
-      // "Log In to Your Account",
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 24,
-        fontFamily:
-        'PoetsenOne-Regular',
         fontWeight: FontWeight.bold,
       ),
     );

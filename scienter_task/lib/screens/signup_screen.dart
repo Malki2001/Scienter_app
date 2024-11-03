@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -37,7 +36,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final numericRegex = RegExp(r'[0-9]');
   final uppercaseRegex = RegExp(r'[A-Z]');
   final lowercaseRegex = RegExp(r'[a-z]');
-  final MobileRegex = RegExp(r'^07[0-9]{8}$');
+  final mobileRegex = RegExp(r'^07[0-9]{8}$');
 
   String? onNameChanged(String? name) {
     if (name!.isEmpty) {
@@ -50,13 +49,11 @@ class _SignupScreenState extends State<SignupScreen> {
   String? onMobileChanged(String? mobile) {
     if (mobile!.isEmpty) {
       return "* Mobile Number is required.";
-    } else if (!MobileRegex.hasMatch(mobile)) {
+    } else if (!mobileRegex.hasMatch(mobile)) {
       return "* Mobile Number is invalid.";
-    }
-    else if(mobile.length != 10){
+    } else if (mobile.length != 10) {
       return "* Mobile Number must contain 10 characters";
-    }
-    else {
+    } else {
       return null;
     }
   }
@@ -90,7 +87,6 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
-
   String? onConfirmPasswordChanged(String? confirmPassword) {
     if (confirmPassword!.isEmpty) {
       return "* Confirm Password is required.";
@@ -102,7 +98,6 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
-
   String? validateAgreement(bool? value) {
     if (value == null || !value) {
       return '* You must agree to the terms and conditions.';
@@ -110,19 +105,17 @@ class _SignupScreenState extends State<SignupScreen> {
     return null;
   }
 
-
-  bool isloading = false;
+  bool isLoading = false;
   List<String> countryNames = [];
   bool isAgreed = false;
   String? agreementError;
-
 
   @override
   void initState() {
     super.initState();
     if (mounted) {
       setState(() {
-        isloading = true;
+        isLoading = true;
       });
     }
     fetchCountryNames();
@@ -141,8 +134,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 .map((country) => country['name']['common'].toString())
                 .toSet()
                 .toList();
-            countryController.text= countryNames[0];
-            isloading = false;
+            countryController.text = countryNames[0];
+            isLoading = false;
           });
         }
       } else {
@@ -153,20 +146,15 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return MainLayout(
-      isLoading: isloading,
+      isLoading: isLoading,
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.white,
-
-
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back,
-              color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.push(
               context,
@@ -175,22 +163,11 @@ class _SignupScreenState extends State<SignupScreen> {
           },
         ),
       ),
-
-
       children: [
-        //
-        // Image.asset(
-        //   'assets/images/img7.jpg',
-        //   width: 150,
-        //   height: 120,
-        //   fit: BoxFit.cover,
-        // ),
-
 
         const SizedBox(height: 20),
 
-        CustomHeading(title: "Create Your Account"),
-
+        const CustomHeading(title: "Create Your Account"),
 
         const SizedBox(height: 30),
 
@@ -205,7 +182,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     validator: (value) => onNameChanged(value),
                     icon: const Icon(Icons.person_outline)),
 
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
 
                 CustomTextField(
                     controller: lNameController,
@@ -214,7 +191,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     validator: (value) => onNameChanged(value),
                     icon: const Icon(Icons.person_outline)),
 
-                // SizedBox(height: ),
 
                 Row(
                   children: [
@@ -231,7 +207,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         });
                       },
                     ),
-                    Text('Male'),
+                    const Text('Male'),
                     Radio<String>(
                       value: 'Female',
                       groupValue: selectedGender,
@@ -241,7 +217,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         });
                       },
                     ),
-                    Text('Female'),
+                    const Text('Female'),
                   ],
                 ),
 
@@ -252,7 +228,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     validator: (value) => onMobileChanged(value),
                     icon: const Icon(Icons.email)),
 
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
 
                 CustomTextField(
                     controller: emailController,
@@ -261,12 +237,13 @@ class _SignupScreenState extends State<SignupScreen> {
                     validator: (value) => onEmailChanged(value),
                     icon: const Icon(Icons.email)),
 
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
 
                 CustomDropdown(
                     dataList: countryNames, controller: countryController),
 
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
+
                 CustomTextField(
                     controller: passwordController,
                     isObscure: true,
@@ -275,31 +252,34 @@ class _SignupScreenState extends State<SignupScreen> {
                     validator: (value) => onPasswordChanged(value),
                     icon: const Icon(Icons.lock)),
 
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
 
                 CustomTextField(
-                controller: confirmPasswordController,
-                isObscure: true,
-                labelText: 'Confirm Password',
-                hintText: 'Confirm Your Password',
-                validator: (value) => onConfirmPasswordChanged(value),
-                icon: const Icon(Icons.lock)),
+                    controller: confirmPasswordController,
+                    isObscure: true,
+                    labelText: 'Confirm Password',
+                    hintText: 'Confirm Your Password',
+                    validator: (value) => onConfirmPasswordChanged(value),
+                    icon: const Icon(Icons.lock)),
 
                 const SizedBox(height: 10),
 
                 Row(
                   children: [
-                    Checkbox(value: isAgreed,
-                        onChanged: (value){
-                          setState(() {
-                            isAgreed = value?? false;
-                            agreementError = validateAgreement(isAgreed);
-                          });
-
-                        },),
-                    const Expanded(child: Text( "Agree with Terms & Conditions",
-                    style: TextStyle(color: Colors.black),))
-
+                    Checkbox(
+                      value: isAgreed,
+                      onChanged: (value) {
+                        setState(() {
+                          isAgreed = value ?? false;
+                          agreementError = validateAgreement(isAgreed);
+                        });
+                      },
+                    ),
+                    const Expanded(
+                        child: Text(
+                      "Agree with Terms & Conditions",
+                      style: TextStyle(color: Colors.black),
+                    ))
                   ],
                 ),
 
@@ -307,20 +287,21 @@ class _SignupScreenState extends State<SignupScreen> {
                     title: "Sign Up",
                     onTap: () {
                       String? errorMessage = validateAgreement(isAgreed);
-                      if (formKey.currentState!.validate() && errorMessage == null) {
+                      if (formKey.currentState!.validate() &&
+                          errorMessage == null) {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => LoginScreen()),
+                          MaterialPageRoute(
+                              builder: (context) => const LoginScreen()),
                         );
                       } else {
-
-                        String displayMessage = errorMessage ?? "Please fill out all fields correctly.";
+                        String displayMessage = errorMessage ??
+                            "Please fill out all fields correctly.";
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text(displayMessage)),
                         );
                       }
                     }),
-
               ],
             )),
       ],

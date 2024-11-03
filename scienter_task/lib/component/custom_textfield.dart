@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../styles/app_styles.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -31,7 +30,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return TextFormField(
       validator: widget.validator,
       controller: widget.controller,
-      obscureText: widget.isObscure? _obscurePassword : false,
+      obscureText: widget.isObscure ? _obscurePassword : false,
       obscuringCharacter: AppInputStyle.obscuringCharacter,
       decoration: InputDecoration(
         border: AppInputStyle.outlineInputBorder,

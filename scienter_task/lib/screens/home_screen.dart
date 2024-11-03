@@ -43,8 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomSearchbar(),
-              SizedBox(height: 15.0),
+              const CustomSearchbar(),
+              const SizedBox(height: 15.0),
               Column(
                 children: [
                   Row(
@@ -53,39 +53,38 @@ class _HomeScreenState extends State<HomeScreen> {
                           jobImage:
                               Image.asset("assets/images/category/c9.jpg"),
                           jobTitle: ' E-commerce'),
-                      SizedBox(width: 8.0),
+                      const SizedBox(width: 8.0),
                       CustomBox(
                           jobImage:
                               Image.asset("assets/images/category/c5.jpg"),
                           jobTitle: 'Technology & IT'),
                     ],
                   ),
-                  SizedBox(height: 15.0),
+                  const SizedBox(height: 15.0),
                   Row(
                     children: [
                       CustomBox(
                           jobImage:
                               Image.asset("assets/images/category/c11.jpg"),
                           jobTitle: 'Healthcare & Wellness'),
-                      SizedBox(width: 8.0),
+                      const SizedBox(width: 8.0),
                       CustomBox(
                           jobImage:
                               Image.asset("assets/images/category/c12.jpg"),
                           jobTitle: 'Education & Training'),
                     ],
                   ),
-                  SizedBox(height: 15.0),
-
+                  const SizedBox(height: 15.0),
                   Row(
                     children: [
                       CustomBox(
                           jobImage:
-                          Image.asset("assets/images/category/c10.jpg"),
+                              Image.asset("assets/images/category/c10.jpg"),
                           jobTitle: 'Food & Beverage'),
-                      SizedBox(width: 8.0),
+                      const SizedBox(width: 8.0),
                       CustomBox(
                           jobImage:
-                          Image.asset("assets/images/category/c13.jpg"),
+                              Image.asset("assets/images/category/c13.jpg"),
                           jobTitle: 'Financial Services'),
                     ],
                   ),
@@ -93,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
               )
             ],
           ),
-          SizedBox(height: 15.0),
+          const SizedBox(height: 15.0),
           CustomButton(title: "Continue", onTap: () {})
         ]);
   }

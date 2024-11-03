@@ -12,24 +12,26 @@ class CustomButton extends StatefulWidget {
 class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
-    return Container(width: MediaQuery.of(context).size.width,
+    return Container(
+      width: MediaQuery.of(context).size.width,
       child: ElevatedButton(
         onPressed: widget.onTap,
         style: ElevatedButton.styleFrom(
           foregroundColor: Colors.white,
-          backgroundColor: Colors.orange, // Text color
+          backgroundColor: Colors.orange,
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           textStyle: const TextStyle(fontSize: 14),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10), // Set radius here
+            borderRadius: BorderRadius.circular(10),
           ),
         ),
-        child: Text(widget.title,
-        style: const TextStyle(
-
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),),
+        child: Text(
+          widget.title,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }

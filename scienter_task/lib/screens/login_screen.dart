@@ -10,8 +10,6 @@ import 'package:scienter_task/component/main_layout.dart';
 import 'package:scienter_task/screens/home_screen.dart';
 import 'package:scienter_task/screens/signup_screen.dart';
 
-
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -20,8 +18,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
- final formKey = GlobalKey<FormState>();
-
+  final formKey = GlobalKey<FormState>();
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -44,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (password!.isEmpty) {
       return "* Password is required.";
     }
-    if (password.length <= 8 && password.length>=30) {
+    if (password.length <= 8 && password.length >= 30) {
       return "* Password must be 6 characters long.";
     } else if (!numericRegex.hasMatch(password)) {
       return "* Password must contain at least one number.";
@@ -61,10 +58,8 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.white,
-
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back,
-              color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             SystemNavigator.pop();
           },
@@ -77,116 +72,90 @@ class _LoginScreenState extends State<LoginScreen> {
           height: 180,
           fit: BoxFit.cover,
         ),
-
         const SizedBox(height: 20),
-
         const CustomHeading(title: " Log In to Your Account"),
-
         const SizedBox(height: 20),
-
         Form(
-            key: formKey ,
+            key: formKey,
             child: Column(
-          children: [
-            CustomTextField(
-                controller: emailController,
-                labelText: 'Username',
-                hintText: 'Enter Your Username',
-                validator: (value) => onEmailChanged(value),
-                icon: const Icon(Icons.email)),
-
-            const SizedBox(height: 10),
-
-            CustomTextField(
-                controller: passwordController,
-                isObscure: true,
-                labelText: 'Password',
-                hintText: 'Enter Your Password',
-                validator: (value) => onPasswordChanged(value),
-                icon: const Icon(Icons.lock)),
-
-            const SizedBox(height: 10),
-
-            const Align(
-              alignment: Alignment.centerRight,
-              child:
-                Text(
-                  "Forgot the password",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 12
+              children: [
+                CustomTextField(
+                    controller: emailController,
+                    labelText: 'Username',
+                    hintText: 'Enter Your Username',
+                    validator: (value) => onEmailChanged(value),
+                    icon: const Icon(Icons.email)),
+                const SizedBox(height: 10),
+                CustomTextField(
+                    controller: passwordController,
+                    isObscure: true,
+                    labelText: 'Password',
+                    hintText: 'Enter Your Password',
+                    validator: (value) => onPasswordChanged(value),
+                    icon: const Icon(Icons.lock)),
+                const SizedBox(height: 10),
+                const Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    "Forgot the password",
+                    style: TextStyle(color: Colors.grey, fontSize: 12),
                   ),
                 ),
-
-            ),
-
-            const SizedBox(height: 10),
-
-
-            CustomButton(title: "Sign In", onTap: () {
-              if(formKey.currentState! .validate()){
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
-                );
-              }
-            }),
-          ],
-        )),
-
+                const SizedBox(height: 10),
+                CustomButton(
+                    title: "Sign In",
+                    onTap: () {
+                      if (formKey.currentState!.validate()) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomeScreen()),
+                        );
+                      }
+                    }),
+              ],
+            )),
         const SizedBox(height: 10),
-
-        CustomDivider(),
-
+        const CustomDivider(),
         const SizedBox(height: 10),
-
         const Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             CustomAppbutton(appIcon: Icons.facebook),
-
             SizedBox(width: 30),
-
-            CustomAppbutton(appIcon: FontAwesomeIcons.google, iconSize: 18,),
-
+            CustomAppbutton(
+              appIcon: FontAwesomeIcons.google,
+              iconSize: 18,
+            ),
             SizedBox(width: 30),
-
             CustomAppbutton(appIcon: Icons.apple_outlined),
-
           ],
         ),
-
-
-
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               "Don't have an account?",
               style: TextStyle(
                 color: Colors.grey,
               ),
             ),
-
-
             TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignupScreen()),
-                  );
-                },
-                child: Text(
-                  "Sign Up",
-                  style: TextStyle(
-                    color: Colors.orange,
-                  ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SignupScreen()),
+                );
+              },
+              child: const Text(
+                "Sign Up",
+                style: TextStyle(
+                  color: Colors.orange,
                 ),
               ),
-
+            ),
           ],
         )
       ],

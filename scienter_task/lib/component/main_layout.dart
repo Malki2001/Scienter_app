@@ -40,17 +40,14 @@ class MainLayout extends StatelessWidget {
               Container(
                 color: Colors.grey.withOpacity(0.4),
                 child: const Center(
-                  child:
-                      Text(
-                        "Please wait...",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black54,
-                        ),
-                      ),
-
-
+                  child: Text(
+                    "Please wait...",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black54,
+                    ),
+                  ),
                 ),
               ),
           ],

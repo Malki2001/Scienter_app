@@ -11,25 +11,25 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
     initialization();
   }
-  
+
   void initialization() async {
     print('pausing...');
     await Future.delayed(const Duration(seconds: 3));
     print('unpausing...');
     FlutterNativeSplash.remove();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'My Demo App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
         useMaterial3: true,
         fontFamily: 'Lato',
       ),
